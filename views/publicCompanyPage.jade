@@ -1,0 +1,15 @@
+// publicCompanyPage
+h1 Hi there! This is the Company Page
+div= publicCompanyObject
+
+p Name: #{publicCompanyObject.name}
+p Description:  #{publicCompanyObject.description}
+p Contact: #{publicCompanyObject.contact}
+-if (publicCompanyObject.sectors)
+	p Sector: 
+		-for sector in publicCompanyObject.sectors
+			=sector + ' '
+-if (publicCompanyObject.needs)
+	p Needs: 
+		-for need in publicCompanyObject.needs
+			=need + ' '

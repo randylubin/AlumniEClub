@@ -1,0 +1,19 @@
+// Public User Profile
+
+h1 Hi there! This is the user profile page
+-console.log('in jade: ' + publicProfileObject)
+div= publicProfileObject
+p Name: #{publicProfileObject.name.first} #{publicProfileObject.name.last}
+p Class: #{publicProfileObject.gradClass}
+p Blurb: #{publicProfileObject.blurb}
+-if (publicProfileObject.companyLink)
+	p Company: 
+		a(href='../company/' + publicProfileObject.companyLink.companyId) #{publicProfileObject.companyLink.companyName}
+-if(publicProfileObject.skills)
+	p Skills: 
+		-for skill in publicProfileObject.skills
+			=skill + ' '
+-if(publicProfileObject.industries)			
+	p Industry: 
+		-for interest in publicProfileObject.industries
+			=interest + ' '

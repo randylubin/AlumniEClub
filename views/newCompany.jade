@@ -1,0 +1,22 @@
+// newCompany
+
+div
+    form(action='/company/new', method='POST')
+      #companyName
+        label(for='name') Company Name:
+        input(type='text', name='name', placeholder='Company Name')
+      #description
+        label(for='description') About the Company:
+        input(type='textfield', name='description', placeholder='About the Company')
+      #sectors
+        label(for='sectors') Sectors:
+        input(type='text', name='sectors', placeholder='Sectors')
+      #needs
+        label(for='needs') What you need help with:
+        input(type='text', name='needs', placeholder='needs')
+      #hidden
+        input(type="hidden", name="contact", value="#{currentUser.email}")
+        input(type="hidden", name="userId", value="#{currentUser._id}")
+
+      #submit.button
+        input(type='submit') Register

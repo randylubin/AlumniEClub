@@ -1,0 +1,43 @@
+title Register a New User
+
+div
+  div#header
+    h2 Alumni EClub
+    p Register as a User
+    p Stanford Alumni Only
+
+  div
+    form(action='/register', method='POST')
+      #login.center
+        label(for='email') Email: 
+        input(type='text', name='email', placeholder='email@email.com')
+        p This email address will be shared with other Alumni EClub members
+      #password.center
+        label(for='password') Password: 
+        input(type='password', name='password', placeholder='password')
+      #first-name.center
+        label(for='name.first') First Name: 
+        input(type='text', name='name.first', placeholder='First Name')
+      #last-name.center
+        label(for='name.last') Last Name: 
+        input(type='text', name='name.last', placeholder='Last Name')
+      #gradYear
+        label(for='gradYear') Graduation Year:
+        input(type='text', name='gradClass', placeholder='Graduation Year')
+      #skills
+        label(for='skills') Skills:
+        input(type='text', name='skills', placeholder='Skills')
+      #industries
+        label(for='industries') Industry:
+        input(type='text', name='industries', placeholder='Industries')
+      #blurb
+        label(for='blurb') About Me:
+        input(type='textfield', name='blurb', placeholder='About Me')
+
+      #submit.button
+        input(type='submit') Register
+      
+
+
+div.button 
+  a(href='/account') HOME

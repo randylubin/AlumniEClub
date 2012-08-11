@@ -1,0 +1,17 @@
+title= title
+
+div
+  div#header 
+    h2 Alumni EClub
+    p Hi, #{currentUser.name.first}! 
+
+    h2 Your info:
+    div= currentUser
+
+  ul.options 
+    li.button
+      a(href="/company/new") Add your startup
+
+  div.button
+    a(href='/logout') Logout
+
