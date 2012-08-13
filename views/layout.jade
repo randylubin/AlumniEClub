@@ -6,7 +6,23 @@ html
     //link(rel='stylesheet', type='text/css', media='all', href='/stylesheets/960.css')
     //link(rel='stylesheet', type='text/css', media='all', href='/stylesheets/text.css')
     //link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/css/bootstrap.css')
+    script(type='text/javascript', src='http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js')
+    script(type='text/javascript', src='/js/bootstrap.min.js')
     
-  body!= body
+  body
+    .navbar
+        .navbar-inner
+            .container
+                a(href='/').brand Alumni EClub
+                
+                ul.nav
+                    li
+                        a(href='/account') Account
+                    li 
+                        a(href='/user/all') All Users
+                    li
+                        a(href='company/all') All Companies
+    div.main!= body
     include includes/footer
 

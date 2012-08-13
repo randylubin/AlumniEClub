@@ -15,7 +15,7 @@ div
         label(for='needs') What you need help with:
         input(type='text', name='needs', placeholder='needs')
       #hidden
-        input(type="hidden", name="contact", value="#{currentUser.email}")
+        input(type="hidden", name="contactName", value="#{currentUser.name.first} #{currentUser.name.last}")
         input(type="hidden", name="userId", value="#{currentUser._id}")
 
       #submit.button

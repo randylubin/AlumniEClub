@@ -14,7 +14,8 @@ var UserSchema = new Schema({
     }
   , email: { type: String, unique: true }
   , blurb: { type: String, unique: false }
-  , companies: { type: Array, unique: false }
+  , companyName: { type: String, unique: false }
+  , companyId: { type: String, unique: false }
   , gradClass: { type: String, unique: false }
   , skills: { type: Array, unique: false }
   , industries: { type: Array, unique: false }

@@ -9,9 +9,19 @@ module.exports = {
 
   // app.get('/'...)
   index: function(req, res) {
-    res.render('index.jade', { locals:
-      { title: 'CrowdNotes' }
-    });
+    if(req.isAuthenticated()){
+      res.render('homeLoggedIn.jade',{ locals:
+        { title: 'Alumni EClub'
+        , currentUser: req.user
+        }
+      });
+    }else{
+      res.render('index.jade', { locals:
+        { title: 'Alumni EClub' 
+        , currentUser: null
+        }
+      });
+    }  
   },
 
   // app.get('/register'...)
@@ -49,7 +59,7 @@ module.exports = {
   // app.get('/account', ensureAuthenticated, ...
   getAccount: function(req, res) {
       res.render('account.jade', { locals:
-        { title: 'CrowdNotes' 
+        { title: 'Alumni EClub' 
         , currentUser: req.user
         }
       });
@@ -74,12 +84,17 @@ module.exports = {
     db.saveCompany({
       name      : req.param('name')
     , description : req.param('description')
-    , contact   : req.param('contact')
+    , contactName   : req.param('contactName')
+    , contactId: req.param('userId')
     , sectors   : req.param('sectors')
     , needs   : req.param('needs')
 
-    }, function(err,docs) {
-      res.redirect('/account');
+    }, function(err,companyInfo) {
+      console.log(companyInfo)
+      db.addCompanyToUser(companyInfo
+      , function(err){
+          res.redirect('/account');
+        }); 
     });
   },
 

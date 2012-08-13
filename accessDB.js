@@ -113,15 +113,29 @@ module.exports = {
     var newCompany = new Company ({
       name: companyInfo.name
     , description: companyInfo.description
-    , contact:  companyInfo.contact
+    , contactName:  companyInfo.contactName
+    , contactId: companyInfo.contactId
     , sectors: companyInfo.sectors
     , needs: companyInfo.needs
     });
 
-    newCompany.save(function(err){
+    newCompany.save(function(err, companyInfo){
       if (err) {throw err;}
       callback(null, companyInfo);
     })
+  },
+
+  addCompanyToUser: function(companyInfo, callback) {
+    console.log('id is ' + toString(companyInfo._id))
+    User.update(
+      {_id: companyInfo.contactId}
+    , { $set: {companyName: companyInfo.name, companyId: companyInfo._id}}
+    , function(err){
+        if (err) {throw err;}
+        callback();
+      }
+
+    )
   },
 /*
   // save an event

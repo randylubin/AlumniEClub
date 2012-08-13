@@ -7,7 +7,8 @@ var Schema = mongoose.Schema;
 var CompanySchema = new Schema({
     name    	: String
   , description : String
-  , contact		: String
+  , contactName	: String
+  , contactId	: String
   , sectors		: String
   , needs		: Array
 });

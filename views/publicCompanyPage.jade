@@ -4,7 +4,8 @@ div= publicCompanyObject
 
 p Name: #{publicCompanyObject.name}
 p Description:  #{publicCompanyObject.description}
-p Contact: #{publicCompanyObject.contact}
+p Contact: 
+	a(href='/user/' + publicCompanyObject.contactId) #{publicCompanyObject.contactName}
 -if (publicCompanyObject.sectors)
 	p Sector: 
 		-for sector in publicCompanyObject.sectors
