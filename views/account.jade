@@ -8,10 +8,15 @@ div
     h2 Your info:
     div= currentUser
 
+  -if (currentUser.companyId)
+    div Your Company: 
+      a(href='../company/' + currentUser.companyId) #{currentUser.companyName}
+      a(href='../company/edit/' + currentUser.companyId) Edit
   ul.options 
-    li.button
-      a(href="/company/new") Add your startup
-
+    li
+      a(href="/company/new") Add Your Startup
+    li
+      a(href="/user/edit") Edit Your Profile
   div.button
     a(href='/logout') Logout
 

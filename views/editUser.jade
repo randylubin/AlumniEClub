@@ -1,0 +1,35 @@
+title Update Your Information
+div
+  div#header
+    h2 Alumni EClub
+    p Update Your Information
+div= currentUser
+
+  div
+    form(action='/user/edit', method='POST')
+      #first-name.center
+        label(for='name.first') First Name: 
+        input(type='text', name='name.first', value=currentUser.name.first)
+      #last-name.center
+        label(for='name.last') Last Name: 
+        input(type='text', name='name.last', value=currentUser.name.last)
+      #gradYear
+        label(for='gradYear') Graduation Year:
+        input(type='text', name='gradClass', value=currentUser.gradClass)
+      #skills
+        label(for='skills') Skills:
+        input(type='text', name='skills', value=currentUser.skills)
+      #industries
+        label(for='industries') Industry:
+        input(type='text', name='industries', value=currentUser.industries)
+      #blurb
+        label(for='blurb') About Me:
+        input(type='textfield', name='blurb', value=currentUser.blurb)
+
+      #submit.button
+        input(type='submit') Save Details
+      
+
+
+div.button 
+  a(href='/account') HOME

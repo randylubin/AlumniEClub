@@ -98,6 +98,74 @@ module.exports = {
     });
   },
 
+  editUser: function(req, res) {
+    res.render('editUser.jade', { locals:
+      { title: 'Alumni EClub'
+      , currentUser: req.user
+
+      }
+
+    });
+  },
+
+  editCompany: function(req, res) {
+    db.getCompanyInfo(req.params.id, function(err, companyObject){
+      console.log(req.user._id)
+      console.log(companyObject.contactId)
+      if (req.user._id == companyObject.contactId) {
+        res.render('editCompany.jade', { locals:
+          { title: 'Alumni EClub'
+          , currentUser: req.user
+          , companyObject: companyObject
+          , companyId: req.param.id
+          }
+        });
+      } else {
+        res.redirect('/error/permission')
+      }
+    });  
+  },
+
+  errorPage: function(req, res) {
+    res.render('errorPage', {locals:
+      { title: 'Alumni EClub'
+      , errorType: req.param.errorType
+      }
+    });
+  },
+
+  postEditUser: function(req, res) {
+    db.updateUser({
+      _id: req.user._id
+    , fname : req.param('name.first')
+    , lname : req.param('name.last')
+    , password : req.param('password')
+    , blurb : req.param('blurb')
+    , gradClass: req.param('gradClass')
+    , skills : req.param('skills')
+    , industries : req.param('industries')
+    , blurb : req.param('blurb')
+    },
+      function(){
+          res.redirect('/account');
+      }); 
+  },
+
+  postEditCompany: function(req, res) {
+    console.log(req.param('companyId') + ' is the id')
+    db.updateCompany({
+      id: req.param('companyId')
+    , name      : req.param('name')
+    , description : req.param('description')
+    , contactName   : req.param('contactName')
+    , sectors   : req.param('sectors')
+    , needs   : req.param('needs')
+      },
+      function(){
+        res.redirect('/account');
+      });
+  },
+
 
   // app.get('/companies/all')
   showAllCompanies: function(req, res) {

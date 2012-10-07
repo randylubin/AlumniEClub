@@ -125,8 +125,46 @@ module.exports = {
     })
   },
 
+  updateUser: function(userInfo, callback) {
+    console.log('checkone');
+    User.update(
+      {_id: userInfo._id}
+    , {$set: 
+        { name : { first: userInfo.fname, last: userInfo.lname }
+        , blurb: userInfo.blurb
+        , gradClass: userInfo.gradClass
+        , skills: userInfo.skills
+        , industries: userInfo.industries
+        }
+      }
+    , {upsert: true}
+    , function(err){
+        console.log('checktwo');
+        if (err) {throw err;}
+        callback();
+      }) 
+  },
+
+  updateCompany: function(companyInfo, callback) {
+    console.log('checkone: ' + companyInfo.id);
+    Company.update(
+      {_id: companyInfo.id}
+      , {$set:
+          { name: companyInfo.name
+          , description: companyInfo.description
+          , sectors: companyInfo.sectors
+          , needs: companyInfo.needs
+          }
+        }
+      , {upsert: true}
+      , function(err){
+          console.log('checktwo');
+          if (err) {throw err;}
+          callback();
+      })
+  },
+
   addCompanyToUser: function(companyInfo, callback) {
-    console.log('id is ' + toString(companyInfo._id))
     User.update(
       {_id: companyInfo.contactId}
     , { $set: {companyName: companyInfo.name, companyId: companyInfo._id}}

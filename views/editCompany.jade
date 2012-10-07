@@ -1,0 +1,29 @@
+// edit company
+title Update Company Information
+div
+  div#header
+    h2 Alumni EClub
+    p Update Company Information
+div= companyObject
+
+div
+    form(action='/company/edit', method='POST')
+      #companyName
+        label(for='name') Company Name:
+        input(type='text', name='name', value=companyObject.name)
+      #description
+        label(for='description') About the Company:
+        input(type='textfield', name='description', value=companyObject.description)
+      #sectors
+        label(for='sectors') Sectors:
+        input(type='text', name='sectors', value=companyObject.sectors)
+      #needs
+        label(for='needs') What you need help with:
+        input(type='text', name='needs', value=companyObject.needs)
+      #hidden
+        input(type="hidden", name="contactName", value="#{currentUser.name.first} #{currentUser.name.last}")
+        input(type="hidden", name="userId", value="#{currentUser._id}")
+        input(type='hidden', name='companyId', value=companyObject._id)
+
+      #submit.button
+        input(type='submit') Save Details

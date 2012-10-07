@@ -35,12 +35,18 @@ module.exports = function(app) {
   app.get('/logout', start.logout);
 
   app.get('/user/all', ensureAuthenticated, start.showAllUsers);
+  app.get('/user/edit', ensureAuthenticated, start.editUser);
+  app.post('/user/edit', ensureAuthenticated, start.postEditUser)
   app.get('/user/:id', ensureAuthenticated, start.publicUserProfile);
 
   app.get('/company/all', ensureAuthenticated, start.showAllCompanies);
   app.get('/company/new', ensureAuthenticated, start.newCompany);
   app.post('/company/new', ensureAuthenticated, start.postNewCompany);
+  app.post('/company/edit', ensureAuthenticated, start.postEditCompany);
+  app.get('/company/edit/:id', ensureAuthenticated, start.editCompany);
   app.get('/company/:id', ensureAuthenticated, start.publicCompanyPage);
+
+  app.get('/error/:errorType', ensureAuthenticated, start.errorPage);
 
 
 
